@@ -10,17 +10,22 @@ header {
 }
 
 nav {
+    width: 100%;
+    float: left;
+    margin: 0 0 1em 0;
+	padding: 0;
     text-align: center;
 }
 
 ul {
     list-style: none;
-    margin: 0;
+    width: 800px; /* may need to switch this later to make it mobile friendly*/
+    margin: 0 auto;
     padding: 0;
 }
 
 li {
-    display: inline-block;
+    float: left;
     margin-right: 20px;
 }
 
