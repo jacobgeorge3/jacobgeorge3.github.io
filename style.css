@@ -2,11 +2,13 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    outline: #66c2ff;
 }
 
 header {
     background-color: #333;
     padding: 15px;
+    outline: #04AA6D;
 }
 
 .topnav {
@@ -16,6 +18,7 @@ header {
 	padding: 0;
     text-align: center;
     background-color: #333;
+    outline: red;
 }
 
 .topnav a {
@@ -23,7 +26,7 @@ header {
     color: white;
     font-weight: bold;
     font-size: 16px;
-}
+}ß
 
 .topnav a:hover {
     color: #66c2ff;
