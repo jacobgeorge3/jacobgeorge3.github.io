@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #333;
+ 
     padding: 15px;
     outline: #04AA6D;
 }
@@ -17,7 +17,7 @@ header {
     margin: 0 0 1em 0;
 	padding: 0;
     text-align: center;
-    background-color: #333;
+    
     outline: red;
 }
 
