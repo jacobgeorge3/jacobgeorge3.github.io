@@ -9,6 +9,7 @@ body {
 header {
  
     padding: 15px;
+    outline-style: solid;
     outline: #04AA6D;
 }
 
@@ -19,7 +20,7 @@ header {
 	padding: 0;
     text-align: center;
     outline-style: solid;
-    outline: red;
+    outline: #d73407;
 }
 
 .topnav a {
