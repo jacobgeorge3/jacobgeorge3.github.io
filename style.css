@@ -3,14 +3,14 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     outline-style: solid;
-    outline: #66c2ff;
+    
 }
 
 header {
  
     padding: 15px;
     outline-style: solid;
-    outline: #04AA6D;
+    
 }
 
 .topnav {
@@ -20,7 +20,7 @@ header {
 	padding: 0;
     text-align: center;
     outline-style: solid;
-    outline: #d73407;
+    
 }
 
 .topnav a {
