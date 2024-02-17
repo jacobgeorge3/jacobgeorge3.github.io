@@ -18,18 +18,6 @@ header {
     background-color: #333;
 }
 
-ul {
-    list-style: none;
-    width: 800px; /* may need to switch this later to make it mobile friendly*/
-    margin: 0 auto;
-    padding: 0;
-}
-
-li {
-    float: left;
-    margin-right: 20px;
-}
-
 .topnav a {
     text-decoration: none;
     color: white;
