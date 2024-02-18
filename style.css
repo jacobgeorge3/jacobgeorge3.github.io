@@ -3,14 +3,14 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     outline-style: solid;
-    
+    outline-color: violet;
 }
 
 header {
  
     padding: 15px;
     outline-style: solid;
-    
+    outline-color: red;
 }
 
 .topnav {
@@ -20,7 +20,8 @@ header {
 	padding: 0;
     text-align: center;
     outline-style: solid;
-    
+    outline-color: orange;
+    list-style: none;
 }
 
 .topnav a {
@@ -29,6 +30,7 @@ header {
     font-weight: bold;
     font-size: 16px;
     outline-style: solid;
+    outline-color: yellow;
 }
 
 .topnav a:hover {
@@ -45,6 +47,7 @@ header {
     margin: 40px auto;
     text-align: center;
     outline-style: solid;
+    outline-color: green;
 }
 
 h1 {
