@@ -21,7 +21,7 @@ header {
     outline-style: solid;
     outline-color: orange;
     list-style: none;
-    display: inline-block
+    display: inline-block;
 }
 
 .topnav a {
