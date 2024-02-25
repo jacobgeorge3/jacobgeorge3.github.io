@@ -6,14 +6,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    outline-style: solid;
-    outline-color: violet;
 }
 
 header {
     padding: 15px;
-    outline-style: solid;
-    outline-color: red;
 }
 
 .topnav {
@@ -21,8 +17,6 @@ header {
     margin: 0 0 1em 0;
 	padding: 0;
     text-align: center;
-    outline-style: solid;
-    outline-color: orange;
     list-style: none;
     
 }
@@ -34,11 +28,9 @@ header {
 
 .topnav a {
     text-decoration: none;
-    color: #333;
+    color: #000000;
     font-weight: bold;
     font-size: 16px;
-    outline-style: solid;
-    outline-color: yellow;
 }
 
 .topnav a:hover {
@@ -46,16 +38,15 @@ header {
 }
 
 .topnav a.active {
-    background-color: #5c4519;
-    color: #000000;
+    color: #8b4601;
+    text-decoration-line: underline;
+    text-decoration-thickness: 3px;
 }
 
 #content {
     max-width: 800px;
     margin: 40px auto;
     text-align: center;
-    outline-style: solid;
-    outline-color: green;
 }
 
 h1 {
