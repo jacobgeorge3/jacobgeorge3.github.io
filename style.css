@@ -26,7 +26,7 @@ header {
     margin: 15px;
 }
 
-.topnav a {
+.topnav a{
     text-decoration: none;
     color: #000000;
     font-weight: bold;
@@ -38,6 +38,23 @@ header {
 }
 
 .topnav a.active {
+    color: #8b4601;
+    text-decoration-line: underline;
+    text-decoration-thickness: 3px;
+}
+
+.topnav button{
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.topnav button:hover{
+    color: #252b91
+}
+
+.topnav button.active{
     color: #8b4601;
     text-decoration-line: underline;
     text-decoration-thickness: 3px;
@@ -55,4 +72,19 @@ h1 {
 
 p {
     color: #666;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+    margin-right: auto;
+    margin-left: auto;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
 }
