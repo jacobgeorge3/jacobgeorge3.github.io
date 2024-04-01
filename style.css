@@ -43,21 +43,18 @@ header {
     text-decoration-thickness: 3px;
 }
 
-.topnav button{
-    text-decoration: none;
-    color: #000000;
+.blogButtons {
+    text-decoration-line: underline;
+    text-decoration-thickness: 3px;
+    color: #8b4601;
     font-weight: bold;
     font-size: 16px;
 }
 
-.topnav button:hover{
-    color: #252b91
-}
-
-.topnav button.active{
-    color: #8b4601;
-    text-decoration-line: underline;
-    text-decoration-thickness: 3px;
+.blogButtons:disabled{
+    text-decoration: none;
+    color: #000000;
+    font-size: 16px;
 }
 
 #content {
