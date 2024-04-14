@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+    <script src="script.js"></script>
     <header>
             <!-- Load an icon library to show a hamburger menu (bars) on small screens
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,40 +25,24 @@
         </ul> 
     </header>
 
-    <ul class="blogButtons">
-        <li><button type="button" onclick="blogNav(this)">Climbing</button></li>
-        <li><button type="button" onclick="blogNav(this)">Books</button></li>
-        <li><button type="button" onclick="blogNav(this)">Movies</button></li>
-        <li><button type="button" onclick="blogNav(this)">Tech</button></li>
+    <ul class="topnav">
+        <li><button class="blogButtons" id="climbingBlogButton" type = "button" onclick="blogNav(this)">Climbing</button></li>
+        <li><button class="blogButtons" id="booksBlogButton" type="button" onclick="blogNav(this)">Books</button></li>
+        <li><button class="blogButtons" id="moviesBlogButton" type="button" onclick="blogNav(this)">Movies</button></li>
+        <li><button class="blogButtons" id="techBlogButton" type="button" onclick="blogNav(this)">Tech</button></li>
     </ul> 
 
 
-<table>
+<table id="blogTable">
     <thead>
         <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Summary</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-        </tr>
-        <tr>
-            <td>Data 4</td>
-            <td>Data 5</td>
-            <td>Data 6</td>
-        </tr>
-        <tr>
-            <td>Data 7</td>
-            <td>Data 8</td>
-            <td>Data 9</td>
-        </tr>
+    <tbody id="testBody">
     </tbody>
 </table>
-
 </body>
 </html>
