@@ -26,7 +26,7 @@ header {
     margin: 15px;
 }
 
-.topnav a {
+.topnav a{
     text-decoration: none;
     color: #000000;
     font-weight: bold;
@@ -43,6 +43,20 @@ header {
     text-decoration-thickness: 3px;
 }
 
+.blogButtons:active{
+    text-decoration-line: underline;
+    text-decoration-thickness: 3px;
+    color: #8b4601;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.blogButtons {
+    text-decoration: none;
+    color: #000000;
+    font-size: 16px;
+}
+
 #content {
     max-width: 800px;
     margin: 40px auto;
@@ -55,4 +69,19 @@ h1 {
 
 p {
     color: #666;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+    margin-right: auto;
+    margin-left: auto;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
 }
