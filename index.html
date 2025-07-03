@@ -1,38 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv='cache-control' content='no-cache'> 
-    <meta http-equiv='expires' content='0'> 
-    <meta http-equiv='pragma' content='no-cache'>
-    <link rel="stylesheet" href="style.css"/>
-    <title>Jacob George - My Experience</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Engineer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #0f0f0f;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+    header, footer {
+      background: #1a1a1a;
+      padding: 20px;
+      text-align: center;
+    }
+    nav a {
+      color: #f5f5f5;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #00ffff;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #00ffff;
+    }
+    a.button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #00ffff;
+      color: #0f0f0f;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    a.button:hover {
+      background-color: #00bbbb;
+    }
+  </style>
 </head>
 <body>
-    <script src="script.js"></script>
-    <header>
-            <!-- Load an icon library to show a hamburger menu (bars) on small screens
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-             mobile friendly hamburger menu -->
-        <ul class="topnav" id="myTopnav">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <!--<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i> icon for mobile -->
-        </ul> 
-    </header>
+  <header>
+    <h1>Software Engineer Portfolio</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <section id="content">
-        <h1>Welcome to My Website!</h1>
-        <p>
-            I've created this site to start a blog about things I'm interested in. 
-            If you navigate to the blog page you'll find subjects like research I've been interested in, rock climbing, books I've been reading, and movies I've seen recently.
-            Through this blog I hope to foster conversations from different communities that are interesting and enjoyable.
-            The projects tab is what it sounds like. From software to woodworking projects I'll post it. Let me know what you think!
-        </p>
+  <div class="container">
+    <section id="about">
+      <h2>About Me</h2>
+      <p>[Your bio goes here]</p>
     </section>
 
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>[List your projects here]</p>
+    </section>
+
+    <section id="resume">
+      <h2>Resume</h2>
+      <p>[Link to or embed your resume]</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: [your email]</p>
+      <p>GitHub: <a href="https://github.com/jacobgeorge3" target="_blank">jacobgeorge3</a></p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Jacob George. All rights reserved.</p>
+  </footer>
 </body>
 </html>
