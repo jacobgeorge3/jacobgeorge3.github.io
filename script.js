@@ -45,3 +45,17 @@ function loadTableData(items) {
     });
   
   }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const carousel = document.querySelector('.carousel-cards');
+  const leftArrow = document.querySelector('.carousel-arrow.left');
+  const rightArrow = document.querySelector('.carousel-arrow.right');
+  if (carousel && leftArrow && rightArrow) {
+    leftArrow.addEventListener('click', () => {
+      carousel.scrollBy({ left: -270, behavior: 'smooth' });
+    });
+    rightArrow.addEventListener('click', () => {
+      carousel.scrollBy({ left: 270, behavior: 'smooth' });
+    });
+  }
+});
