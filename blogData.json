@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "title": "Climbing Yosemite: My First Big Wall",
-    "date": "2024-05-01",
-    "summary": "A story about my first big wall climbing experience in Yosemite.",
-    "content": "Full story about climbing in Yosemite...",
-    "popularity": 10
+    "title": "Beginning my Tech Refresh",
+    "date": "2025-07-22",
+    "summary": "My first blog post and description of my goal with this website",
+    "file": "post1.md",
+    "popularity": 0
   },
   {
     "id": 2,
     "title": "Top 5 Books I Read in 2023",
     "date": "2024-01-15",
     "summary": "A review of my favorite books from last year.",
-    "content": "Detailed reviews of each book...",
-    "popularity": 7
+    "file": "post2.md",
+    "popularity": 0
   },
   {
     "id": 3,
     "title": "Why I Love Sci-Fi Movies",
     "date": "2023-12-10",
     "summary": "Exploring my passion for science fiction films.",
-    "content": "Thoughts on sci-fi movies and recommendations...",
-    "popularity": 12
+    "file": "post3.md",
+    "popularity": 0
   }
 ] 
