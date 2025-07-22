@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv='cache-control' content='no-cache'> 
-    <meta http-equiv='expires' content='0'> 
-    <meta http-equiv='pragma' content='no-cache'>
-    <link rel="stylesheet" href="style.css"/>
-    <title>Jacob George - My Blog</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacob George - My Blog</title>
+  <meta name="description" content="Blog posts by Jacob George, Software Engineer.">
+  <meta name="author" content="Jacob George">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <script src="script.js"></script>
-    <header>
-            <!-- Load an icon library to show a hamburger menu (bars) on small screens
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-             mobile friendly hamburger menu -->
-        <ul class="topnav" id="myTopnav">
-            <li><a href="index.html" >Home</a></li>
-            <li><a href="blog.html" class="active">Blog</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <!--<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i> icon for mobile -->
-        </ul> 
-    </header>
-
-    <ul class="topnav">
-        <li><button class="blogButtons" id="climbingBlogButton" type = "button" onclick="blogNav(this)">Climbing</button></li>
-        <li><button class="blogButtons" id="booksBlogButton" type="button" onclick="blogNav(this)">Books</button></li>
-        <li><button class="blogButtons" id="moviesBlogButton" type="button" onclick="blogNav(this)">Movies</button></li>
-        <li><button class="blogButtons" id="techBlogButton" type="button" onclick="blogNav(this)">Tech</button></li>
-    </ul> 
-
-
-<table id="blogTable">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Title</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody id="testBody">
-    </tbody>
-</table>
+  <header>
+    <h1>Jacob George's Blog</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <div class="container">
+    <section id="blog-categories">
+      <div style="margin-bottom: 24px;">
+        <button class="blogButtons" id="climbingBlogButton" type="button" onclick="blogNav(this)">Climbing</button>
+        <button class="blogButtons" id="booksBlogButton" type="button" onclick="blogNav(this)">Books</button>
+        <button class="blogButtons" id="moviesBlogButton" type="button" onclick="blogNav(this)">Movies</button>
+        <button class="blogButtons" id="techBlogButton" type="button" onclick="blogNav(this)">Tech</button>
+      </div>
+      <div style="margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+        <input type="text" id="blog-search" placeholder="Search blog posts..." style="flex:1; min-width: 180px; max-width: 300px; padding: 8px; border-radius: 4px; border: 1px solid #333;">
+        <select id="blog-filter-date" style="padding: 8px; border-radius: 4px; border: 1px solid #333;">
+          <option value="">Sort by Date</option>
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+        <select id="blog-filter-popularity" style="padding: 8px; border-radius: 4px; border: 1px solid #333;">
+          <option value="">Sort by Popularity</option>
+          <option value="most">Most Popular</option>
+          <option value="least">Least Popular</option>
+        </select>
+      </div>
+    </section>
+    <section id="blog-posts">
+      <div id="blog-cards" class="blog-cards"></div>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2025 Jacob George. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
