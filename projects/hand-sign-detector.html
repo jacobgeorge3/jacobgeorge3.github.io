@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hand Sign Detector | Jacob George</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Page specific overrides */
+        .project-hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #00f260;
+            border: 1px solid rgba(0, 242, 96, 0.2);
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            border: 1px solid #333;
+            margin: 2rem 0;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card h3 {
+            color: #0575e6;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><a href="../index.html">Jacob George</a></h1>
+        <nav>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-hero">
+            <h1>Hand Sign Detector</h1>
+            <p>Real-time computer vision system for gesture recognition.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">OpenCV</span>
+                <span class="tech-tag">MediaPipe</span>
+                <span class="tech-tag">NumPy</span>
+            </div>
+            <a href="https://github.com/jacobgeorge3/CVFinalProj" target="_blank" class="button"
+                style="display:inline-block; margin-top:1rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; border: 1px solid #0575e6; padding: 10px 20px; border-radius: 5px;">View
+                on GitHub</a>
+        </div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>This project implements a real-time hand gesture recognition system using Google's MediaPipe framework
+                and OpenCV. Unlike traditional deep learning approaches that require massive datasets, this system uses
+                a lightweight, geometric approach by analyzing the relative distances between hand landmarks.</p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h3>Landmark Detection</h3>
+                    <p>Utilizes MediaPipe Hands to extract 21 3D hand landmarks in real-time with high fidelity.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Custom Descriptor</h3>
+                    <p>Implements a custom geometric descriptor that is invariant to hand scale and position.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multi-Class Support</h3>
+                    <p>Classifies 5 distinct gestures: Claws, Frogs, Gigem, Guns Up, and Horns.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <p>The core logic revolves around a custom descriptor that normalizes the Euclidean distances of all
+                fingertips relative to the wrist. This creates a unique "signature" for each hand pose.</p>
+
+            <div class="code-block">
+                <pre>
+def create_descriptor(landmarks):
+  if len(landmarks) < 21: return []
+  base_x, base_y = landmarks[0] # Wrist point
+  lm_dists_normed = []
+  
+  for i in range(20):
+    lm_x, lm_y = landmarks[i+1]
+    # Calculate distance to base
+    lm_dist = np.sqrt(np.square(lm_x - base_x) + np.square(lm_y - base_y))
+    lm_dists_normed.append(lm_dist)
+
+  # Normalize by max distance to be scale-invariant
+  max_dist = max(lm_dists_normed)
+  lm_dists_normed = np.array(lm_dists_normed) / max_dist
+  return lm_dists_normed
+</pre>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
