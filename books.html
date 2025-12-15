@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf | Jacob George</title>
+    <meta name="description" content="Jacob George's reading list and AI Literature Bot.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1><a href="index.html"
+                style="text-decoration: none; color: inherit; background: none; -webkit-text-fill-color: initial;">Jacob
+                George</a></h1>
+        <nav>
+            <a href="index.html#about">About</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="blog.html">Blog</a>
+            <a href="books.html" class="active">Bookshelf</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="bookshelf-intro">
+            <h2>My Bookshelf</h2>
+            <p>A collection of books I've read, pulled directly from my Goodreads.</p>
+        </section>
+
+        <section id="literature-bot-section" class="glass-panel"
+            style="padding: 2rem; border-radius: 16px; margin-bottom: 4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="margin: 0;">Literature Bot 🤖</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Powered by Gemini</span>
+            </div>
+            <p style="font-size: 0.9rem;">Ask me about any book on the shelf! I can discuss themes, characters, or give
+                recommendations.</p>
+
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot-message">Hello! I've read all the books below. Ask me anything about them!
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Ask about a book..." />
+                    <button id="chat-send">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="books-grid" class="books-grid">
+            <!-- Books will be populated here -->
+            <div class="loading-spinner">Loading books...</div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
