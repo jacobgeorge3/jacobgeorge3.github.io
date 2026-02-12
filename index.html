@@ -16,18 +16,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <header>
-    <h1>Software Engineer Portfolio</h1>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="blog.html">Blog</a>
-    <a href="books.html">Bookshelf</a>
-    <a href="#resume">Resume</a>
-    <a href="#contact">Contact</a>
+    <h1 class="typing-effect">Jacob George</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -45,26 +46,22 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <div class="projects-carousel">
-        <div class="carousel-arrow left">&#8592;</div>
-        <div class="carousel-cards">
-          <div class="project-card">
-            <h3>Hand Sign Detector</h3>
-            <p>Real-time gesture recognition using Python, OpenCV, and MediaPipe.</p>
-            <a href="projects/hand-sign-detector.html">View Project</a>
-          </div>
-          <div class="project-card">
-            <h3>Project Two</h3>
-            <p>A short description of Project Two. This project is even more amazing.</p>
-            <a href="#" target="_blank">View Project</a>
-          </div>
-          <div class="project-card">
-            <h3>Project Three</h3>
-            <p>A short description of Project Three. This project will blow your mind.</p>
-            <a href="#" target="_blank">View Project</a>
-          </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Hand Sign Detector</h3>
+          <p>Real-time gesture recognition using Python, OpenCV, and MediaPipe.</p>
+          <a href="projects/hand-sign-detector.html" class="project-link">View Project</a>
         </div>
-        <div class="carousel-arrow right">&#8594;</div>
+        <div class="project-card">
+          <h3>Project Two</h3>
+          <p>A short description of Project Two. This project is even more amazing.</p>
+          <a href="#" target="_blank" class="project-link">View Project</a>
+        </div>
+        <div class="project-card">
+          <h3>Project Three</h3>
+          <p>A short description of Project Three. This project will blow your mind.</p>
+          <a href="#" target="_blank" class="project-link">View Project</a>
+        </div>
       </div>
     </section>
 
