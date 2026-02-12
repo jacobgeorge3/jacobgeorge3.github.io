@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distributed Job System | Jacob George</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Page specific overrides */
+        .project-hero {
+            text-align: center;
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: rgba(46, 160, 67, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+        }
+
+        .code-block {
+            background: var(--terminal-bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: var(--code-font);
+            font-size: 0.9rem;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--terminal-bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="typing-effect"><a href="../index.html">Jacob George</a></h1>
+        <nav>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-hero">
+            <h1>Distributed Job System</h1>
+            <p>A lightweight distributed job queue system built for scalability and fault tolerance.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">Redis</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+            <a href="https://github.com/jacobgeorge3/distributed-job-system" target="_blank" class="button">View on
+                GitHub</a>
+        </div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>This project implements a robust distributed task processing system where job submissions are decoupled
+                from execution.
+                Detailed REST API endpoints allow users to submit tasks, which are then queued in Redis and picked up
+                asynchronously by
+                independent worker nodes. This architecture ensures high availability and easy horizontal scaling.</p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h3>Asynchronous Processing</h3>
+                    <p>Workers pull jobs from Redis queues using BLPOP, allowing for non-blocking task execution.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Fault Tolerance</h3>
+                    <p>Automatic retry mechanism for failed jobs with a Dead Letter Queue (DLQ) for unrecoverable
+                        errors.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Containerized</h3>
+                    <p>Full Docker & Docker Compose support for easy deployment of API and Worker services.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Status Tracking</h3>
+                    <p>Real-time job status monitoring (queued, processing, completed, failed) via API.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <p>The worker nodes run an infinite loop, polling the Redis queue for new job identifiers. Upon receiving a
+                job,
+                it updates the status to 'processing', executes the logic, and handles any exceptions by retrying or
+                moving to DLQ.</p>
+
+            <div class="code-block">
+                <pre>
+while True:
+    # Block until a job is available in the 'job_queue'
+    _, job_json = r.blpop("job_queue")
+    job = json.loads(job_json)
+    job_id = job.get("id")
+    
+    if not job_id:
+        continue
+
+    # Update status to processing and execute the task
+    r.hset(f"job:{job_id}", "status", "processing")
+    try:
+        # Logic for task execution (e.g., simulating a 2-second job)
+        if job.get("task") == "fail":
+            raise RuntimeError("Simulated failure")
+        time.sleep(2) 
+        
+        r.hset(f"job:{job_id}", "status", "completed")
+    except Exception as e:
+        # Handle failure: Retry or move to Dead Letter Queue
+        attempts = job.get("attempts", 0) + 1
+        if attempts < MAX_ATTEMPTS:
+            job["attempts"] = attempts
+            r.rpush("job_queue", json.dumps(job)) # Re-queue for retry
+        else:
+            r.rpush("dead_letter_queue", json.dumps(job)) # Move to DLQ
+</pre>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
