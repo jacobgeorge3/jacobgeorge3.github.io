@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HaaS Platform | Jacob George</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Page specific overrides */
+        .project-hero {
+            text-align: center;
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(46, 160, 67, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+        }
+
+        .code-block {
+            background: var(--terminal-bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: var(--code-font);
+            font-size: 0.9rem;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--terminal-bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="typing-effect"><a href="../index.html">Jacob George</a></h1>
+        <nav>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-hero">
+            <h1>Hardware as a Service (HaaS) Platform</h1>
+            <p>A full-stack web application simulating a Hardware-as-a-Service platform for managing and renting
+                physical assets.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Python (Flask)</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+            <a href="https://github.com/jacobgeorge3/Haas-Platform" target="_blank" class="button">View on GitHub</a>
+        </div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>The HaaS Platform is designed to streamline the management of hardware resources. It allows users to
+                browse available hardware, check availability, and rent equipment through an intuitive interface.
+                Administrators can manage inventory, track rentals, and monitor usage statistics, all within a secure
+                and scalable environment.</p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h3>User Authentication</h3>
+                    <p>Secure login and registration system for users and administrators with role-based access control.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3>Inventory Management</h3>
+                    <p>Real-time tracking of hardware stock, including status updates (available, rented, maintenance).
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3>Rental System</h3>
+                    <p>Automated booking process with availability checks and duration management.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>RESTful API</h3>
+                    <p>Robust backend API built with Flask, serving JSON data to the React frontend.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <p>The frontend is built with React, providing a dynamic and responsive user experience. It communicates
+                with a Python Flask backend which handles business logic and database interactions with MongoDB. The
+                entire application is containerized with Docker for easy deployment and consistency across environments.
+            </p>
+
+            <div class="code-block">
+                <pre>
+@app.route('/api/hardware/<id>/rent', methods=['POST'])
+@login_required
+def rent_hardware(id):
+    """
+    Endpoint to process a rental request.
+    Verifies availability and updates inventory status.
+    """
+    hardware = Hardware.objects(id=id).first()
+    
+    if not hardware or not hardware.is_available:
+        return jsonify({'error': 'Hardware not available'}), 400
+        
+    # Create rental record
+    rental = Rental(
+        user=current_user.id,
+        hardware=hardware.id,
+        start_date=datetime.now(),
+        duration=request.json.get('duration')
+    )
+    rental.save()
+    
+    # Update hardware status
+    hardware.update(set__is_available=False)
+    
+    return jsonify({'message': 'Rental successful', 'rental_id': str(rental.id)})
+</pre>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
