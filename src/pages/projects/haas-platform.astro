@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeToggle from '../../components/theme/ThemeToggle.jsx';
+
+const codeSnippet = `
+@app.route('/api/hardware/<id>/rent', methods=['POST'])
+@login_required
+def rent_hardware(id):
+    """
+    Endpoint to process a rental request.
+    Verifies availability and updates inventory status.
+    """
+    hardware = Hardware.objects(id=id).first()
+    
+    if not hardware or not hardware.is_available:
+        return jsonify({'error': 'Hardware not available'}), 400
+        
+    # Create rental record
+    rental = Rental(
+        user=current_user.id,
+        hardware=hardware.id,
+        start_date=datetime.now(),
+        duration=request.json.get('duration')
+    )
+    rental.save()
+    
+    # Update hardware status
+    hardware.update(set__is_available=False)
+    
+    return jsonify({'message': 'Rental successful', 'rental_id': str(rental.id)})
+`;
+---
+
+<Layout>
+
+    <header>
+        <h1><a href="/">Jacob George</a></h1>
+        <nav style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="/#about">About</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#contact">Contact</a>
+            <ThemeToggle client:load />
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-hero">
+            <h1>Hardware as a Service (HaaS) Platform</h1>
+            <p>A full-stack web application simulating a Hardware-as-a-Service platform for managing and renting
+                physical assets.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Python (Flask)</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+            <a href="https://github.com/jacobgeorge3/Haas-Platform" target="_blank" class="button">View on GitHub</a>
+        </div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>The HaaS Platform is designed to streamline the management of hardware resources. It allows users to
+                browse available hardware, check availability, and rent equipment through an intuitive interface.
+                Administrators can manage inventory, track rentals, and monitor usage statistics, all within a secure
+                and scalable environment.</p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h3>User Authentication</h3>
+                    <p>Secure login and registration system for users and administrators with role-based access control.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3>Inventory Management</h3>
+                    <p>Real-time tracking of hardware stock, including status updates (available, rented, maintenance).
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3>Rental System</h3>
+                    <p>Automated booking process with availability checks and duration management.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>RESTful API</h3>
+                    <p>Robust backend API built with Flask, serving JSON data to the React frontend.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <p>The frontend is built with React, providing a dynamic and responsive user experience. It communicates
+                with a Python Flask backend which handles business logic and database interactions with MongoDB. The
+                entire application is containerized with Docker for easy deployment and consistency across environments.
+            </p>
+
+            <div class="code-block">
+                <pre set:text={codeSnippet.trim()}></pre>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    </footer>
+</Layout>

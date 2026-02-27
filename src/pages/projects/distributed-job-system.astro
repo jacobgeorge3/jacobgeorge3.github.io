@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeToggle from '../../components/theme/ThemeToggle.jsx';
+
+const codeSnippet = `
+while True:
+    # Block until a job is available in the 'job_queue'
+    _, job_json = r.blpop("job_queue")
+    job = json.loads(job_json)
+    job_id = job.get("id")
+    
+    if not job_id:
+        continue
+
+    # Update status to processing and execute the task
+    r.hset(f"job:{job_id}", "status", "processing")
+    try:
+        # Logic for task execution (e.g., simulating a 2-second job)
+        if job.get("task") == "fail":
+            raise RuntimeError("Simulated failure")
+        time.sleep(2) 
+        
+        r.hset(f"job:{job_id}", "status", "completed")
+    except Exception as e:
+        # Handle failure: Retry or move to Dead Letter Queue
+        attempts = job.get("attempts", 0) + 1
+        if attempts < MAX_ATTEMPTS:
+            job["attempts"] = attempts
+            r.rpush("job_queue", json.dumps(job)) # Re-queue for retry
+        else:
+            r.rpush("dead_letter_queue", json.dumps(job)) # Move to DLQ
+`;
+---
+
+<Layout>
+
+    <header>
+        <h1><a href="/">Jacob George</a></h1>
+        <nav style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="/#about">About</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#contact">Contact</a>
+            <ThemeToggle client:load />
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-hero">
+            <h1>Distributed Job System</h1>
+            <p>A lightweight distributed job queue system built for scalability and fault tolerance.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">Redis</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+            <a href="https://github.com/jacobgeorge3/distributed-job-system" target="_blank" class="button">View on
+                GitHub</a>
+        </div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>This project implements a robust distributed task processing system where job submissions are decoupled
+                from execution.
+                Detailed REST API endpoints allow users to submit tasks, which are then queued in Redis and picked up
+                asynchronously by
+                independent worker nodes. This architecture ensures high availability and easy horizontal scaling.</p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h3>Asynchronous Processing</h3>
+                    <p>Workers pull jobs from Redis queues using BLPOP, allowing for non-blocking task execution.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Fault Tolerance</h3>
+                    <p>Automatic retry mechanism for failed jobs with a Dead Letter Queue (DLQ) for unrecoverable
+                        errors.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Containerized</h3>
+                    <p>Full Docker & Docker Compose support for easy deployment of API and Worker services.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Status Tracking</h3>
+                    <p>Real-time job status monitoring (queued, processing, completed, failed) via API.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <p>The worker nodes run an infinite loop, polling the Redis queue for new job identifiers. Upon receiving a
+                job,
+                it updates the status to 'processing', executes the logic, and handles any exceptions by retrying or
+                moving to DLQ.</p>
+
+            <div class="code-block">
+                <pre set:text={codeSnippet.trim()}></pre>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    </footer>
+</Layout>

@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeToggle from '../../components/theme/ThemeToggle.jsx';
+---
+
+<Layout>
+    <header>
+        <h1><a href="/">Jacob George</a></h1>
+        <nav style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="/#about">About</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#contact">Contact</a>
+            <ThemeToggle client:load />
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-hero">
+            <h1>Copilot Studio Customer Onboarding Agent</h1>
+            <p>An intelligent AI Agent built to streamline vendor document processing and customer onboarding.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Azure OpenAI</span>
+                <span class="tech-tag">Microsoft Copilot Studio</span>
+                <span class="tech-tag">Python (Flask)</span>
+                <span class="tech-tag">Azure App Service</span>
+            </div>
+            <a href="https://github.com/jacobgeorge3/copilot-onboarding-agent" target="_blank" class="button">View on GitHub</a>
+        </div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>This project leverages the Microsoft Cloud ecosystem to build an automated, AI-driven onboarding assistant. 
+            By connecting Microsoft Copilot Studio to a custom Python Flask API deployed on Azure App Services, the agent 
+            can intelligently parse complex vendor documentation, extract necessary compliance details, and guide new customers 
+            through the onboarding pipeline with natural language.</p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h3>Generative AI Parsing</h3>
+                    <p>Uses Azure OpenAI models via Copilot Studio to comprehend and extract structured data from unstructured vendor PDFs.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Custom API Integration</h3>
+                    <p>Connects conversational flows to a custom Python Flask backend to execute business logic and database writes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Cloud Native Deployment</h3>
+                    <p>The backend logic is fully deployed and scaled using Azure App Services, demonstrating enterprise cloud architecture patterns.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    </footer>
+</Layout>

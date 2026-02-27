@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeToggle from '../../components/theme/ThemeToggle.jsx';
+
+const codeSnippet = `
+def create_descriptor(landmarks):
+  if len(landmarks) < 21: return []
+  base_x, base_y = landmarks[0] # Wrist point
+  lm_dists_normed = []
+  
+  for p in landmarks:
+    dx = p[0] - base_x
+    dy = p[1] - base_y
+    lm_dists_normed.append(dx)
+    lm_dists_normed.append(dy)
+    
+  # Normalize to -1 to +1 range roughly
+  max_val = max(map(abs, lm_dists_normed))
+  if max_val == 0: return lm_dists_normed
+  return [n / max_val for n in lm_dists_normed]
+`;
+---
+
+<Layout>
+
+    <header>
+        <h1><a href="/">Jacob George</a></h1>
+        <nav style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="/#about">About</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#contact">Contact</a>
+            <ThemeToggle client:load />
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="project-hero">
+            <h1>Hand Sign Detector</h1>
+            <p>Real-time computer vision system for gesture recognition.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">OpenCV</span>
+                <span class="tech-tag">MediaPipe</span>
+                <span class="tech-tag">NumPy</span>
+            </div>
+            <a href="https://github.com/jacobgeorge3/CVFinalProj" target="_blank" class="button">View on GitHub</a>
+        </div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>This project implements a real-time hand gesture recognition system using Google's MediaPipe framework
+                and OpenCV. Unlike traditional deep learning approaches that require massive datasets, this system uses
+                a lightweight, geometric approach by analyzing the relative distances between hand landmarks.</p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h3>Landmark Detection</h3>
+                    <p>Utilizes MediaPipe Hands to extract 21 3D hand landmarks in real-time with high fidelity.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Custom Descriptor</h3>
+                    <p>Implements a custom geometric descriptor that is invariant to hand scale and position.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multi-Class Support</h3>
+                    <p>Classifies 5 distinct gestures: Claws, Frogs, Gigem, Guns Up, and Horns.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <p>The core logic revolves around a custom descriptor that normalizes the Euclidean distances of all
+                fingertips relative to the wrist. This creates a unique "signature" for each hand pose.</p>
+
+            <div class="code-block">
+                <pre set:text={codeSnippet.trim()}></pre>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    </footer>
+</Layout>

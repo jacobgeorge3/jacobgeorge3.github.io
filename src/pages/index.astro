@@ -1,34 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+import Layout from '../layouts/Layout.astro';
+import ThemeToggle from '../components/theme/ThemeToggle.jsx';
+---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Software Engineer Portfolio</title>
-  <meta name="description"
-    content="Portfolio of Jacob George, Software Engineer specializing in OEM solutions and backend systems.">
-  <meta name="author" content="Jacob George">
-  <meta property="og:title" content="Jacob George | Software Engineer Portfolio">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://jacobgeorge3.github.io">
-  <meta property="og:description" content="Showcasing projects and technical experience of Jacob George.">
-  <meta name="robots" content="index, follow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
+<Layout>
   <header>
     <h1 class="typing-effect">Jacob George</h1>
-    <nav>
+    <nav style="display: flex; align-items: center; gap: 1.5rem;">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#resume">Resume</a>
       <a href="#contact">Contact</a>
+      <ThemeToggle client:load />
     </nav>
   </header>
 
@@ -50,22 +33,22 @@
         <div class="project-card">
           <h3>Hand Sign Detector</h3>
           <p>Real-time gesture recognition using Python, OpenCV, and MediaPipe.</p>
-          <a href="projects/hand-sign-detector.html" class="project-link">View Project</a>
+          <a href="/projects/hand-sign-detector" class="project-link">View Project</a>
         </div>
         <div class="project-card">
           <h3>Distributed Job System</h3>
           <p>Scalable async task queue using Python, Flask, Redis, and Docker.</p>
-          <a href="projects/distributed-job-system.html" class="project-link">View Project</a>
+          <a href="/projects/distributed-job-system" class="project-link">View Project</a>
         </div>
         <div class="project-card">
           <h3>HaaS Platform</h3>
           <p>Full-stack hardware rental platform with React, Flask, and Docker.</p>
-          <a href="projects/haas-platform.html" class="project-link">View Project</a>
+          <a href="/projects/haas-platform" class="project-link">View Project</a>
         </div>
         <div class="project-card">
-          <h3>Project Three</h3>
-          <p>A short description of Project Three. This project will blow your mind.</p>
-          <a href="#" target="_blank" class="project-link">View Project</a>
+          <h3>Copilot Studio Customer Onboarding Agent</h3>
+          <p>AI agent built with Azure OpenAI and Copilot Studio to parse vendor documents.</p>
+          <a href="/projects/copilot-onboarding-agent" class="project-link">View Project</a>
         </div>
       </div>
     </section>
@@ -73,7 +56,7 @@
     <section id="resume">
       <h2>Resume</h2>
       <p>My resume is available for download below.</p>
-      <a href="Jacob-George-Resume- 200007560.pdf" class="button" target="_blank">View Resume</a>
+      <a href="/Jacob-George-Resume- 200007560.pdf" class="button" target="_blank">View Resume</a>
     </section>
 
     <section id="contact">
@@ -88,6 +71,4 @@
   <footer>
     <p>&copy; 2025 Jacob George. All rights reserved.</p>
   </footer>
-</body>
-
-</html>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+import ThemeToggle from '../components/theme/ThemeToggle.jsx';
+import ThemeRenderer from '../components/theme/ThemeRenderer.jsx';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Engineer Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Jacob George, Software Engineer specializing in OEM solutions and backend systems.">
+  <meta name="author" content="Jacob George">
+  <meta property="og:title" content="Jacob George | Software Engineer Portfolio">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jacobgeorge3.github.io">
+  <meta property="og:description" content="Showcasing projects and technical experience of Jacob George.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+  <ThemeRenderer client:load />
+  <slot />
+</body>
+</html>
