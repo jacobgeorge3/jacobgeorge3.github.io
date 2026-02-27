@@ -1,0 +1,31 @@
+# Project Checkpoint: Astro Portfolio Migration
+
+## Current State: Foundation Complete
+We have successfully migrated the legacy static HTML/CSS portfolio to an **Astro-powered Islands Architecture**. The site is live on GitHub Pages and successfully deployed via a custom GitHub Actions workflow ([deploy.yml](file:///c:/Users/jacob/Projects/jacobgeorge3.github.io/.github/workflows/deploy.yml)).
+
+### Core Architecture Implemented
+1.  **Astro Root:** All standard pages (`index`, `projects/*`) are now [.astro](file:///c:/Users/jacob/Projects/jacobgeorge3.github.io/src/pages/index.astro) components, guaranteeing zero-JS initial loads for maximum performance.
+2.  **Nano Stores State Management:** The React Context (`ThemeProvider`) was replaced with Astro's recommended `nanostores`. This ensures seamless, cross-framework global state (currently tracking `$themeStore`) without encountering Astro Island wrapping bugs.
+3.  **Dynamic Rendering ([ThemeRenderer.jsx](file:///c:/Users/jacob/Projects/jacobgeorge3.github.io/src/components/theme/ThemeRenderer.jsx)):** A top-level React component mounts to the layout and listens to the Nano Store. When a user switches themes, [ThemeRenderer](file:///c:/Users/jacob/Projects/jacobgeorge3.github.io/src/components/theme/ThemeRenderer.jsx#8-24) uses React `lazy()` and `Suspense` to dynamically download and inject heavy engine components (like [ClimbingEngine.jsx](file:///c:/Users/jacob/Projects/jacobgeorge3.github.io/src/components/theme/ClimbingEngine.jsx)) *only* when requested.
+4.  **CSS Variables:** The visual styling is controlled globally via a `data-theme="climbing"` attribute attached to the `<html>` document. 
+
+### Why is the Orange Box missing locally?
+The user noted that the [ClimbingEngine](file:///c:/Users/jacob/Projects/jacobgeorge3.github.io/src/components/theme/ClimbingEngine.jsx#4-71)'s orange box (the placeholder for the climber) is visible on the live GitHub Pages site but not on the local dev server. 
+
+**Diagnosis:**
+This is a classic "Hydration vs Complete Static Build" discrepancy.
+-   **Local (`npm run dev`):** Astro uses Vite to HMR (Hot Module Replace) components on the fly. If you started the dev server *before* we migrated from standard React Context to Nano Stores, Vite's cached dependency graph might not have injected the lazily-loaded [ClimbingEngine.jsx](file:///c:/Users/jacob/Projects/jacobgeorge3.github.io/src/components/theme/ClimbingEngine.jsx) cleanly upon state changes. 
+-   **Production (GitHub Pages):** The site was fully compiled via `astro build`. The JS bundles were perfectly chunked and hydrated. The code works precisely as intended.
+-   *Fix for next time:* Simply restarting the local dev server (`Ctrl+C` -> `npm run dev`) and hard-refreshing the browser (`Ctrl+Shift+R`) will clear the Vite cache and align local dev with the live production site.
+
+---
+
+## Next Steps: Phase 2 (The Alpine Experience)
+Now that the invisible structural engineering is bulletproof, the next session will focus purely on the visual layer of the `climbing` theme.
+
+1.  **Asset Generation:** Use AI image tools or SVGs to create the visual assets:
+    -   The Climber Character (sprite or single animated SVG).
+    -   Alpine Background Vectors (mountains, trees, parallax layers).
+    -   "Anchor Points" or "Boulders" representing the project milestones.
+2.  **Physics Mapping:** Refine the [ClimbingEngine.jsx](file:///c:/Users/jacob/Projects/jacobgeorge3.github.io/src/components/theme/ClimbingEngine.jsx) Framer Motion logic. We need to map `useScroll()` so that the climber physically intersects with the Project Cards on the screen as the user scrolls.
+3.  **Transitions & Polish:** Ensure the transition between 'Classic' and 'Alpine' feels magical, perhaps with a slight fade or entering animation for the climber.

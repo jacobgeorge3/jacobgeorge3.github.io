@@ -88,6 +88,12 @@ a:hover {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
+  transition: padding-left 0.3s ease;
+}
+
+[data-theme="climbing"] .container {
+  /* Push content over to make room for the 10vw gutter rope */
+  padding-left: max(2rem, 15vw);
 }
 
 section {
@@ -177,11 +183,46 @@ nav a:hover::after {
   border-radius: 6px;
   padding: 1.5rem;
   transition: transform 0.2s, border-color 0.2s;
+  position: relative;
+  /* ensure pseudo elements stack correctly if needed */
+}
+
+/* Climbing Theme Overrides for Project Cards (Boulders/Ledges) */
+[data-theme="climbing"] .project-card {
+  border: none;
+  background: transparent;
+  padding: 2rem;
+  /* Give a little more breathing room for the sketchy border */
+}
+
+[data-theme="climbing"] .project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: url('/boulder-border.svg');
+  background-size: 100% 100%;
+  pointer-events: none;
+  transition: transform 0.2s;
+}
+
+[data-theme="climbing"] .project-card:hover::before {
+  transform: scale(1.02);
 }
 
 .project-card:hover {
   border-color: var(--accent-color);
   transform: translateY(-2px);
+}
+
+[data-theme="climbing"] .project-card:hover {
+  border-color: transparent;
+  /* Reset the normal hover border for the climbing theme */
+  transform: translateY(-2px) rotate(-1deg);
+  /* Give it a rocky, unbalanced tilt on hover */
 }
 
 .project-card h3 {

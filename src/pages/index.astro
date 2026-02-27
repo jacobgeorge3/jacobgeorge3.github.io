@@ -71,4 +71,34 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
   <footer>
     <p>&copy; 2025 Jacob George. All rights reserved.</p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.project-link');
+      
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          // Check if the climbing theme is currently active
+          const isClimbing = document.documentElement.getAttribute('data-theme') === 'climbing';
+          
+          if (isClimbing) {
+            e.preventDefault(); // Stop immediate navigation
+            const href = link.getAttribute('href');
+            
+            // Calculate the target X distance from the gutter (roughly 10vw) to the center of the card
+            const rect = link.closest('.project-card').getBoundingClientRect();
+            const gutterOffset = window.innerWidth * 0.10; // 10% from CSS
+            const targetX = rect.left + (rect.width / 2) - gutterOffset; 
+            const targetY = rect.top + window.scrollY; // Just for reference, mapped in engine
+            
+            // Fire the global event to trigger the React Framer Motion animation
+            const event = new CustomEvent('climber-swing', {
+              detail: { targetX, targetY, href }
+            });
+            window.dispatchEvent(event);
+          }
+        });
+      });
+    });
+  </script>
 </Layout>

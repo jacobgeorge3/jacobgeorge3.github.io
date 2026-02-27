@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+    <!-- Light sketchy under-stroke -->
+    <path 
+        d="M 3 6 L 11 1 L 51 5 L 91 3 L 99 9 L 96 51 L 99 89 L 89 99 L 52 95 L 9 99 L 1 91 L 2 52 Z" 
+        fill="none" 
+        stroke="#718096" 
+        stroke-width="1" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        vector-effect="non-scaling-stroke"
+        opacity="0.4"
+    />
+    <!-- Main Sketched outer border -->
+    <path 
+        d="M 2 5 L 10 2 L 50 4 L 90 2 L 98 8 L 97 50 L 98 90 L 90 98 L 50 96 L 10 98 L 2 90 L 3 50 Z" 
+        fill="none" 
+        stroke="#718096" 
+        stroke-width="1.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        vector-effect="non-scaling-stroke"
+    />
+    <!-- Inner sketchy shading lines (top left to simulate light) -->
+    <path 
+        d="M 5 10 L 15 5 M 8 15 L 20 8 M 5 25 L 10 20" 
+        stroke="#718096" 
+        stroke-width="1" 
+        stroke-linecap="round"
+        vector-effect="non-scaling-stroke"
+        opacity="0.5"
+    />
+    <!-- Bottom right craggy details -->
+    <path 
+        d="M 90 95 L 85 90 M 95 85 L 90 80 M 80 95 L 75 90" 
+        stroke="#718096" 
+        stroke-width="1" 
+        stroke-linecap="round"
+        vector-effect="non-scaling-stroke"
+        opacity="0.5"
+    />
+</svg>
