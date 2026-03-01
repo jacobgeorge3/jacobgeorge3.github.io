@@ -1,9 +1,8 @@
 import React from 'react';
 import { useStore } from '@nanostores/react';
-import { themeStore } from './themeStore';
+import { themeStore, setTheme } from '../../store/themeStore';
 
 export default function ThemeToggle() {
-    // Read and subscribe to the nano store
     const theme = useStore(themeStore);
 
     return (
@@ -12,7 +11,7 @@ export default function ThemeToggle() {
             <select
                 id="theme-select"
                 value={theme}
-                onChange={(e) => themeStore.set(e.target.value)}
+                onChange={(e) => setTheme(e.target.value)}
                 style={{
                     background: 'var(--terminal-bg)',
                     color: 'var(--accent-color)',

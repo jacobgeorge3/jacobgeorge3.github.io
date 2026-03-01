@@ -8,6 +8,7 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
     <h1 class="typing-effect">Jacob George</h1>
     <nav style="display: flex; align-items: center; gap: 1.5rem;">
       <a href="#about">About</a>
+      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#resume">Resume</a>
       <a href="#contact">Contact</a>
@@ -18,37 +19,85 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
   <div class="container">
     <section id="about">
       <h2>About Me</h2>
-      <p>Hi! My name is Jacob George and I'm a Systems Engineer at Dell Technologies. I provide customized solutions to
-        my OEM customers that they in turn provide to their end users.
-        I graduated from the University of Texas in 2023 with a degree in Electrical & Computer Engineering. My focus
-        was in Software Engineering and this is where my passion lies.
-        My programming career began in highscool when I accidentally signed up for a Senior level Computer Science
-        course. Since then my love for software develpment, hardware design, and system architecture has only grown.
+      <p>
+        I'm a Software Engineer with a background in systems architecture. Currently at Dell Technologies
+        as a Systems Engineer, I build customized OEM solutions while pursuing my deeper passion:
+        full-stack development and cloud-native AI platforms.
       </p>
+      <p>
+        I graduated from the University of Texas at Austin in 2023 with a degree in Electrical &amp; Computer
+        Engineering, focused on software. Since then I've gone deep on the Microsoft cloud ecosystem &mdash;
+        building with Azure, Power Platform, and Copilot Studio &mdash; alongside production backend work
+        with Flask, Redis, Docker, and CI/CD pipelines.
+      </p>
+      <p>
+        My programming journey started in high school when I accidentally enrolled in a senior-level
+        Computer Science course. That happy accident turned into a career, and I've been building ever since.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2>Tech Stack</h2>
+      <div class="skills-grid">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Astro</span>
+        <span class="tech-tag">Flask</span>
+        <span class="tech-tag">Redis</span>
+        <span class="tech-tag">MongoDB</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">Azure</span>
+        <span class="tech-tag">Power Platform</span>
+        <span class="tech-tag">Copilot Studio</span>
+        <span class="tech-tag">GitHub Actions</span>
+        <span class="tech-tag">REST APIs</span>
+        <span class="tech-tag">CI/CD</span>
+      </div>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
       <div class="projects-grid">
         <div class="project-card">
-          <h3>Hand Sign Detector</h3>
-          <p>Real-time gesture recognition using Python, OpenCV, and MediaPipe.</p>
-          <a href="/projects/hand-sign-detector" class="project-link">View Project</a>
+          <h3>Copilot Onboarding Agent</h3>
+          <p>AI-powered HR onboarding agent built with Copilot Studio, Power Platform, and a Flask API on Azure. Guides new employees through structured workflows.</p>
+          <div class="card-tags">
+            <span class="card-tag">Azure</span>
+            <span class="card-tag">Copilot Studio</span>
+            <span class="card-tag">Power Platform</span>
+          </div>
+          <a href="/projects/copilot-onboarding-agent" class="project-link">View Project</a>
         </div>
         <div class="project-card">
           <h3>Distributed Job System</h3>
-          <p>Scalable async task queue using Python, Flask, Redis, and Docker.</p>
+          <p>Async distributed job queue with Flask, Redis, and Docker. Retry logic, dead-letter queue, structured logging, and full test suite.</p>
+          <div class="card-tags">
+            <span class="card-tag">Flask</span>
+            <span class="card-tag">Redis</span>
+            <span class="card-tag">Docker</span>
+          </div>
           <a href="/projects/distributed-job-system" class="project-link">View Project</a>
         </div>
         <div class="project-card">
           <h3>HaaS Platform</h3>
-          <p>Full-stack hardware rental platform with React, Flask, and Docker.</p>
+          <p>Full-stack hardware checkout system with React, Flask, MongoDB, and JWT authentication. Dockerized for deployment.</p>
+          <div class="card-tags">
+            <span class="card-tag">React</span>
+            <span class="card-tag">Flask</span>
+            <span class="card-tag">MongoDB</span>
+          </div>
           <a href="/projects/haas-platform" class="project-link">View Project</a>
         </div>
         <div class="project-card">
-          <h3>Copilot Studio Customer Onboarding Agent</h3>
-          <p>AI agent built with Azure OpenAI and Copilot Studio to parse vendor documents.</p>
-          <a href="/projects/copilot-onboarding-agent" class="project-link">View Project</a>
+          <h3>Hand Sign Detector</h3>
+          <p>Real-time gesture recognition using Python, OpenCV, and MediaPipe for computer vision-based interaction.</p>
+          <div class="card-tags">
+            <span class="card-tag">Python</span>
+            <span class="card-tag">OpenCV</span>
+            <span class="card-tag">MediaPipe</span>
+          </div>
+          <a href="/projects/hand-sign-detector" class="project-link">View Project</a>
         </div>
       </div>
     </section>
@@ -56,7 +105,7 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
     <section id="resume">
       <h2>Resume</h2>
       <p>My resume is available for download below.</p>
-      <a href="/Jacob-George-Resume- 200007560.pdf" class="button" target="_blank">View Resume</a>
+      <a href="/Jacob-George-Resume-200029159.pdf" class="button" target="_blank">View Resume</a>
     </section>
 
     <section id="contact">
@@ -69,29 +118,26 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
   </div>
 
   <footer>
-    <p>&copy; 2025 Jacob George. All rights reserved.</p>
+    <p>&copy; 2026 Jacob George. All rights reserved.</p>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const links = document.querySelectorAll('.project-link');
-      
+
       links.forEach(link => {
         link.addEventListener('click', (e) => {
-          // Check if the climbing theme is currently active
           const isClimbing = document.documentElement.getAttribute('data-theme') === 'climbing';
-          
+
           if (isClimbing) {
-            e.preventDefault(); // Stop immediate navigation
+            e.preventDefault();
             const href = link.getAttribute('href');
-            
-            // Calculate the target X distance from the gutter (roughly 10vw) to the center of the card
+
             const rect = link.closest('.project-card').getBoundingClientRect();
-            const gutterOffset = window.innerWidth * 0.10; // 10% from CSS
-            const targetX = rect.left + (rect.width / 2) - gutterOffset; 
-            const targetY = rect.top + window.scrollY; // Just for reference, mapped in engine
-            
-            // Fire the global event to trigger the React Framer Motion animation
+            const gutterOffset = window.innerWidth * 0.10;
+            const targetX = rect.left + (rect.width / 2) - gutterOffset;
+            const targetY = rect.top + window.scrollY;
+
             const event = new CustomEvent('climber-swing', {
               detail: { targetX, targetY, href }
             });

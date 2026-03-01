@@ -32,6 +32,10 @@
   font-family: var(--code-font);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-main);
@@ -370,4 +374,39 @@ footer {
   color: var(--accent-color);
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Card Tech Tags (inline on project cards) */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  color: var(--accent-color);
+  border: 1px solid var(--border-color);
+  background: transparent;
+}
+
+/* Hide climbing engine on mobile */
+@media (max-width: 768px) {
+  .climbing-sandbox {
+    display: none !important;
+  }
+
+  [data-theme="climbing"] .container {
+    padding-left: 2rem;
+  }
 }
