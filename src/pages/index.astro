@@ -123,7 +123,8 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const links = document.querySelectorAll('.project-link');
+      // Select all outbound or interaction links (skipping smooth-scroll nav links)
+      const links = document.querySelectorAll('a:not([href^="#"])');
 
       links.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -132,14 +133,21 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
           if (isClimbing) {
             e.preventDefault();
             const href = link.getAttribute('href');
+            const targetAttr = link.getAttribute('target');
 
-            const rect = link.closest('.project-card').getBoundingClientRect();
+            const rect = link.getBoundingClientRect();
             const gutterOffset = window.innerWidth * 0.10;
-            const targetX = rect.left + (rect.width / 2) - gutterOffset;
-            const targetY = rect.top + window.scrollY;
+            
+            // The new sprite width is 80px, centered on the gutter.
+            // The climber container's X is `gutterOffset - 40px`.
+            // The target `x` is `rect.left`. Subtracting the container's X gives the relative X.
+            const targetX = rect.left - (gutterOffset - 40);
+            
+            // The Y target is the viewport-relative top of the element.
+            const targetViewportY = rect.top;
 
             const event = new CustomEvent('climber-swing', {
-              detail: { targetX, targetY, href }
+              detail: { targetX, targetViewportY, href, targetAttr }
             });
             window.dispatchEvent(event);
           }

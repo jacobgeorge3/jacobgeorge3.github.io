@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ClimberSprite({ width = 40, height = 60, color = "var(--text-main)", ropeColor = "var(--accent-color)", ...props }) {
+export default function ClimberSprite({ width = 80, height = 120, color = "var(--text-main)", ropeColor = "var(--accent-color)", ...props }) {
     return (
         <svg
             width={width}
@@ -11,48 +11,71 @@ export default function ClimberSprite({ width = 40, height = 60, color = "var(--
             style={{ overflow: 'visible' }}
             {...props}
         >
-            <g stroke={color} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.9 }}>
-                {/* Rope Attachment / Harness Loop */}
-                <path d="M 50 75 Q 60 70 55 60" stroke={ropeColor} strokeWidth="3" />
-                <circle cx="55" cy="60" r="3" fill="none" stroke={ropeColor} strokeWidth="2" />
+            <g>
+                {/* 1. Rope & Carabiner */}
+                {/* The main tie-in loop */}
+                <path d="M 50 70 Q 60 70 55 58" stroke={ropeColor} strokeWidth="3" fill="none" />
+                {/* Locking Carabiner (with spine and gate) */}
+                <rect x="52" y="52" width="6" height="12" rx="3" fill="var(--bg-color)" stroke={ropeColor} strokeWidth="2" />
+                <line x1="58" y1="55" x2="58" y2="61" stroke={color} strokeWidth="1" /> {/* Lock sleeve detail */}
 
-                {/* Helmet / Head - double drawn for sketch effect */}
-                <path d="M 40 25 C 40 15, 60 15, 60 25 C 60 35, 40 35, 40 25 Z" fill="none" />
-                <path d="M 38 27 C 39 12, 62 14, 58 28 C 55 36, 42 36, 38 27" fill="none" strokeWidth="2" />
+                {/* 2. Head & Helmet */}
+                {/* Neck/Lower Head layer */}
+                <rect x="44" y="25" width="12" height="15" rx="4" fill={color} />
+                {/* Helmet Dome */}
+                <path d="M 37 28 C 37 10, 63 10, 63 28 Z" fill={ropeColor} /> {/* Use rope color for accent helmet */}
+                {/* Helmet Rim/Strap */}
+                <line x1="37" y1="28" x2="63" y2="28" stroke="var(--bg-color)" strokeWidth="2" />
+                {/* Visor/Goggles Cutout */}
+                <rect x="42" y="20" width="18" height="6" rx="2" fill="var(--bg-color)" opacity="0.8" />
+                <circle cx="47" cy="23" r="1" fill={color} /> {/* Eye glint */}
 
-                {/* Torso / Shirt */}
-                <path d="M 45 40 L 55 40 L 65 75 L 35 75 Z" fill="none" />
-                <path d="M 43 42 L 57 38 L 67 77 L 33 73 Z" fill="none" strokeWidth="2" />
+                {/* 3. The Torso / Jacket */}
+                {/* We use a thick polygon instead of a line. */}
+                <path d="M 38 40 L 62 40 L 65 85 L 35 85 Z" fill={color} />
+                {/* Jacket Zipper/Seam detail for texture */}
+                <line x1="50" y1="40" x2="50" y2="85" stroke="var(--bg-color)" strokeWidth="1.5" strokeDasharray="4 2" />
 
-                {/* Left Arm reaching up */}
-                <path d="M 40 45 Q 25 35 30 15" fill="none" />
-                <path d="M 42 47 Q 27 33 28 17" fill="none" strokeWidth="2" />
-                {/* Hand/Fingers */}
-                <path d="M 30 15 L 25 10 M 30 15 L 28 8 M 30 15 L 34 10" strokeWidth="2" />
+                {/* 4. Harness & Chalk Bag */}
+                {/* Waist belt */}
+                <rect x="33" y="80" width="34" height="6" rx="2" fill="var(--terminal-bg)" stroke={color} strokeWidth="1" />
+                {/* Leg loops */}
+                <path d="M 35 85 L 33 100 M 65 85 L 67 100" stroke="var(--terminal-bg)" strokeWidth="4" />
+                {/* Chalk Bag hanging off right hip */}
+                <rect x="63" y="85" width="12" height="15" rx="4" fill="var(--bg-color)" stroke={color} strokeWidth="2" />
+                <circle cx="69" cy="85" r="5" fill={color} opacity="0.3" /> {/* Chalk dust */}
 
-                {/* Right Arm hanging / chalking */}
-                <path d="M 60 45 Q 75 55 70 75" fill="none" />
-                <path d="M 58 47 Q 77 53 72 73" fill="none" strokeWidth="2" />
+                {/* 5. Left Arm (Reaching up to grab rope) */}
+                {/* Upper Arm */}
+                <line x1="42" y1="45" x2="28" y2="30" stroke={color} strokeWidth="6" strokeLinecap="round" />
+                {/* Forearm */}
+                <line x1="28" y1="30" x2="33" y2="12" stroke={color} strokeWidth="5" strokeLinecap="round" />
+                {/* Hand/Fingers gripping */}
+                <circle cx="33" cy="12" r="4" fill="var(--bg-color)" stroke={color} strokeWidth="2" />
 
-                {/* Harness lines */}
-                <path d="M 35 75 Q 50 85 65 75" fill="none" strokeWidth="3" />
-                <path d="M 35 75 L 30 90 M 65 75 L 70 90" fill="none" strokeWidth="3" />
-                <path d="M 30 90 Q 50 95 70 90" fill="none" strokeWidth="2" />
+                {/* 6. Right Arm (Hanging / Resting) */}
+                {/* Upper Arm */}
+                <line x1="58" y1="45" x2="72" y2="55" stroke={color} strokeWidth="6" strokeLinecap="round" />
+                {/* Forearm angled in */}
+                <line x1="72" y1="55" x2="65" y2="72" stroke={color} strokeWidth="5" strokeLinecap="round" />
+                {/* Hand */}
+                <circle cx="65" cy="72" r="3.5" fill={color} />
 
-                {/* Left Leg bent */}
-                <path d="M 38 85 Q 20 100 25 125" fill="none" />
-                <path d="M 40 83 Q 18 102 23 123" fill="none" strokeWidth="2" />
-                {/* Left Foot */}
-                <path d="M 25 125 L 15 130 L 18 135 L 28 130 Z" fill="none" />
+                {/* 7. Left Leg (Bent, stepping on invisible rock) */}
+                {/* Thigh */}
+                <line x1="40" y1="85" x2="20" y2="105" stroke={color} strokeWidth="8" strokeLinecap="round" />
+                {/* Calf straight down */}
+                <line x1="20" y1="105" x2="20" y2="125" stroke={color} strokeWidth="6" strokeLinecap="round" />
+                {/* Climbing Shoe */}
+                <path d="M 20 125 L 10 130 L 12 135 L 25 130 Z" fill={ropeColor} /> {/* Accent shoe */}
 
-                {/* Right Leg planted down */}
-                <path d="M 62 85 Q 75 110 65 140" fill="none" />
-                <path d="M 60 87 Q 77 108 67 138" fill="none" strokeWidth="2" />
-                {/* Right Foot */}
-                <path d="M 65 140 L 75 142 L 72 147 L 62 145 Z" fill="none" />
-
-                {/* Little motion lines for sketchiness */}
-                <path d="M 15 45 L 20 50 M 80 80 L 85 85 M 20 145 L 25 145" strokeWidth="1" opacity="0.5" />
+                {/* 8. Right Leg (Straight down/smearing) */}
+                {/* Thigh */}
+                <line x1="60" y1="85" x2="65" y2="115" stroke={color} strokeWidth="8" strokeLinecap="round" />
+                {/* Calf */}
+                <line x1="65" y1="115" x2="60" y2="140" stroke={color} strokeWidth="6" strokeLinecap="round" />
+                {/* Climbing Shoe */}
+                <path d="M 60 140 L 72 143 L 68 148 L 57 145 Z" fill={ropeColor} />
             </g>
         </svg>
     );

@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStore } from '@nanostores/react';
 import { themeStore, setTheme } from '../../store/themeStore';
 
 export default function ThemeToggle() {
     const theme = useStore(themeStore);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const currentTheme = mounted ? theme : 'classic';
 
     return (
         <div className="theme-toggle" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <label htmlFor="theme-select" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Experience:</label>
+            <label htmlFor="theme-select" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Theme:</label>
             <select
                 id="theme-select"
-                value={theme}
+                value={currentTheme}
                 onChange={(e) => setTheme(e.target.value)}
                 style={{
                     background: 'var(--terminal-bg)',

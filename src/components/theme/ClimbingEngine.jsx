@@ -33,12 +33,22 @@ export default function ClimbingEngine() {
 
         // Listen for custom trigger to start swing animation before navigation
         const handleSwingEvent = (e) => {
-            const { targetX, targetY, href } = e.detail;
-            setSwingingTo({ x: targetX, y: targetY });
+            const { targetX, targetViewportY, href, targetAttr } = e.detail;
+
+            // The relative Y offset is the button's viewport position MINUS the climber container's current viewport position
+            const currentContainerY = yPos.get();
+            const relativeY = targetViewportY - currentContainerY;
+
+            setSwingingTo({ x: targetX, y: relativeY });
 
             // Wait for duration of swing (0.5s) then navigate
             setTimeout(() => {
-                window.location.href = href;
+                if (targetAttr === '_blank') {
+                    window.open(href, '_blank');
+                    setSwingingTo(null); // Return to rope
+                } else {
+                    window.location.href = href;
+                }
             }, 600);
         };
         window.addEventListener('climber-swing', handleSwingEvent);
@@ -49,7 +59,7 @@ export default function ClimbingEngine() {
         };
     }, []);
 
-    const yPos = useTransform(smoothProgress, [0, 1], [0, pageHeight - windowHeight]);
+    const yPos = useTransform(smoothProgress, [0, 1], [0, Math.max(0, pageHeight - windowHeight - 300)]);
 
 
 
@@ -97,7 +107,7 @@ export default function ClimbingEngine() {
                     position: 'absolute',
                     left: gutterLeft,
                     top: 0,
-                    bottom: 0,
+                    bottom: 300,
                     width: '2px',
                     backgroundColor: 'var(--text-muted)',
                     transformOrigin: 'top'
@@ -108,23 +118,22 @@ export default function ClimbingEngine() {
             <motion.div
                 style={{
                     position: 'absolute',
-                    left: `calc(${gutterLeft} - 20px)`, // Center the 40px width sprite on the rope
+                    left: `calc(${gutterLeft} - 40px)`, // Center the 80px width sprite on the rope
                     top: 0,
                     y: yPos // Bound strictly to scroll physics
                 }}
             >
                 {/* The Climber Sprite (Handles Entrance Animation & Swing overrides) */}
                 <motion.div
-                    // If swingingTo is set, override the normal X layout to swing to the card!
+                    // If swingingTo is set, override the normal layout to swing precisely to the card!
                     animate={swingingTo ? {
                         x: swingingTo.x,
-                        // Note: we can't easily animate Y here without fighting the scroll tracker.
-                        // But since the project card is already exactly where the cursor clicked it, 
-                        // scrolling over horizontally works fine as a "swing"
+                        y: swingingTo.y,
                         rotate: 35 // lean into the jump
                     } : {
                         y: 0,
                         x: 0,
+                        rotate: 0,
                         opacity: 1
                     }}
                     initial={{ y: -150, opacity: 0 }}
@@ -135,7 +144,7 @@ export default function ClimbingEngine() {
                         delay: swingingTo ? 0 : 0.6
                     }}
                 >
-                    <ClimberSprite width={40} height={60} />
+                    <ClimberSprite width={80} height={120} />
                 </motion.div>
             </motion.div>
         </div>
