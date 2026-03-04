@@ -39,17 +39,7 @@ export default function ClimbingEngine() {
             const currentContainerY = yPos.get();
             const relativeY = targetViewportY - currentContainerY;
 
-            setSwingingTo({ x: targetX, y: relativeY });
-
-            // Wait for duration of swing (0.5s) then navigate
-            setTimeout(() => {
-                if (targetAttr === '_blank') {
-                    window.open(href, '_blank');
-                    setSwingingTo(null); // Return to rope
-                } else {
-                    window.location.href = href;
-                }
-            }, 600);
+            setSwingingTo({ x: targetX, y: relativeY, href, targetAttr });
         };
         window.addEventListener('climber-swing', handleSwingEvent);
 
@@ -59,7 +49,7 @@ export default function ClimbingEngine() {
         };
     }, []);
 
-    const yPos = useTransform(smoothProgress, [0, 1], [0, Math.max(0, pageHeight - windowHeight - 300)]);
+    const yPos = useTransform(smoothProgress, [0, 1], [0, Math.max(0, windowHeight - 150)]);
 
 
 
@@ -139,9 +129,19 @@ export default function ClimbingEngine() {
                     initial={{ y: -150, opacity: 0 }}
                     transition={{
                         type: "spring",
-                        stiffness: swingingTo ? 90 : 70,
-                        damping: swingingTo ? 15 : 12,
+                        stiffness: swingingTo ? 35 : 70, // Slower, more fluid swing
+                        damping: swingingTo ? 10 : 12,
                         delay: swingingTo ? 0 : 0.6
+                    }}
+                    onAnimationComplete={() => {
+                        if (swingingTo && swingingTo.href) {
+                            if (swingingTo.targetAttr === '_blank') {
+                                window.open(swingingTo.href, '_blank');
+                                setSwingingTo(null);
+                            } else {
+                                window.location.href = swingingTo.href;
+                            }
+                        }
                     }}
                 >
                     <ClimberSprite width={80} height={120} />

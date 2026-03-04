@@ -38,6 +38,8 @@ html {
 
 body {
   background-color: var(--bg-color);
+  background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+  background-attachment: fixed;
   color: var(--text-main);
   line-height: 1.6;
 }
@@ -184,10 +186,11 @@ nav a:hover::after {
 .project-card {
   background: var(--terminal-bg);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 1.5rem;
-  transition: transform 0.2s, border-color 0.2s;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   /* ensure pseudo elements stack correctly if needed */
 }
 
@@ -219,7 +222,8 @@ nav a:hover::after {
 
 .project-card:hover {
   border-color: var(--accent-color);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(46, 160, 67, 0.15);
 }
 
 [data-theme="climbing"] .project-card:hover {
@@ -307,6 +311,16 @@ footer {
   }
 }
 
+@keyframes typing-slow {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
+
 @keyframes blink-caret {
 
   from,
@@ -317,6 +331,27 @@ footer {
   50% {
     border-color: var(--accent-color);
   }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typing-tech-stack {
+  overflow: hidden;
+  border-right: .15em solid var(--accent-color);
+  white-space: nowrap;
+  width: 0;
+  animation: typing-slow 1.5s steps(20, end) forwards, blink-caret .75s step-end infinite;
+}
+
+.skill-badge {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.3s ease forwards;
 }
 
 /* Project Page Specifics */

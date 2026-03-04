@@ -37,22 +37,11 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
     </section>
 
     <section id="skills">
-      <h2>Tech Stack</h2>
-      <div class="skills-grid">
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">TypeScript</span>
-        <span class="tech-tag">React</span>
-        <span class="tech-tag">Astro</span>
-        <span class="tech-tag">Flask</span>
-        <span class="tech-tag">Redis</span>
-        <span class="tech-tag">MongoDB</span>
-        <span class="tech-tag">Docker</span>
-        <span class="tech-tag">Azure</span>
-        <span class="tech-tag">Power Platform</span>
-        <span class="tech-tag">Copilot Studio</span>
-        <span class="tech-tag">GitHub Actions</span>
-        <span class="tech-tag">REST APIs</span>
-        <span class="tech-tag">CI/CD</span>
+      <h2 class="typing-tech-stack" style="display:inline-block; border-bottom: none;">Tech Stack</h2>
+      <div class="skills-grid" style="margin-top: 1.5rem;">
+        {["Python", "TypeScript", "React", "Astro", "Flask", "Redis", "MongoDB", "Docker", "Azure", "Power Platform", "Copilot Studio", "GitHub Actions", "REST APIs", "CI/CD"].map((tech, index) => (
+            <span class="tech-tag skill-badge" style={`animation-delay: ${1.5 + (index * 0.1)}s`}>{tech}</span>
+        ))}
       </div>
     </section>
 
@@ -141,7 +130,8 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
             // The new sprite width is 80px, centered on the gutter.
             // The climber container's X is `gutterOffset - 40px`.
             // The target `x` is `rect.left`. Subtracting the container's X gives the relative X.
-            const targetX = rect.left - (gutterOffset - 40);
+            // Subtract an additional 20px so the left arm aligns with the left bound of the link.
+            const targetX = rect.left - (gutterOffset - 40) - 20;
             
             // The Y target is the viewport-relative top of the element.
             const targetViewportY = rect.top;
