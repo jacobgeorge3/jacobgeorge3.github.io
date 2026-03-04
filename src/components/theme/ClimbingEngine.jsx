@@ -97,7 +97,7 @@ export default function ClimbingEngine() {
                     position: 'absolute',
                     left: gutterLeft,
                     top: 0,
-                    bottom: 300,
+                    bottom: 0,
                     width: '2px',
                     backgroundColor: 'var(--text-muted)',
                     transformOrigin: 'top'
