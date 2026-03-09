@@ -109,40 +109,4 @@ import ThemeToggle from '../components/theme/ThemeToggle.jsx';
   <footer>
     <p>&copy; 2026 Jacob George. All rights reserved.</p>
   </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Select all outbound or interaction links (skipping smooth-scroll nav links)
-      const links = document.querySelectorAll('a:not([href^="#"])');
-
-      links.forEach(link => {
-        link.addEventListener('click', (e) => {
-          const isClimbing = document.documentElement.getAttribute('data-theme') === 'climbing';
-
-          if (isClimbing) {
-            e.preventDefault();
-            const href = link.getAttribute('href');
-            const targetAttr = link.getAttribute('target');
-
-            const rect = link.getBoundingClientRect();
-            const gutterOffset = window.innerWidth * 0.10;
-            
-            // The new sprite width is 80px, centered on the gutter.
-            // The climber container's X is `gutterOffset - 40px`.
-            // The target `x` is `rect.left`. Subtracting the container's X gives the relative X.
-            // Subtract an additional 20px so the left arm aligns with the left bound of the link.
-            const targetX = rect.left - (gutterOffset - 40) - 20;
-            
-            // The Y target is the viewport-relative top of the element.
-            const targetViewportY = rect.top;
-
-            const event = new CustomEvent('climber-swing', {
-              detail: { targetX, targetViewportY, href, targetAttr }
-            });
-            window.dispatchEvent(event);
-          }
-        });
-      });
-    });
-  </script>
 </Layout>
